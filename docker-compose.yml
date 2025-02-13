@@ -1,0 +1,9 @@
+services:
+  gap:
+    image: rlutowsk/jupyter-gap:latest
+    container_name: gap
+    ports:
+      - "8000:8000"
+    volumes:
+      - YOUR_NOTEBOOKS_FOLDER:/notebooks
+    user: 1000:1000  # change for your id - *nix os only
