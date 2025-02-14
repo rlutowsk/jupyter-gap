@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM debian:12.9-slim
+FROM debian:stable-slim
 
 # root directory for apps
 ARG PREFIX=/usr/local
@@ -24,7 +24,7 @@ RUN ( test -d $NB_HOME || mkdir -p $NB_HOME ) \
 # jupyter install with venv
 ENV JUPYTER_HOME=$PREFIX/jupyter
 RUN apt-get -y install python3 python3-venv\
- && python3 -m venv $JUPYTER_HOME\
+ && python3 -m venv --upgrade-deps $JUPYTER_HOME\
  && apt-get -y remove python3-venv\
  && apt-get -y autoremove\
  && source $JUPYTER_HOME/bin/activate\
