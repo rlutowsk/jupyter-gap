@@ -5,5 +5,5 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - YOUR_NOTEBOOKS_FOLDER:/notebooks
+      - /tmp/notebooks:/notebooks
     user: 1000:1000  # change for your id - *nix os only

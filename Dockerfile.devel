@@ -49,6 +49,7 @@ RUN apt-get -y install wget\
  && ./configure\
  && make -j\
  && ln -s $GAP_HOME/gap $PREFIX/bin\
+ && ln -s $GAP_HOME/gac $PREFIX/bin\
  && test -d $GAP_HOME/pkg || mkdir $GAP_HOME/pkg\
  && cd $GAP_HOME/pkg\
  && apt-get -y install python3-requests\
@@ -62,9 +63,6 @@ RUN apt-get -y install wget\
  && apt-get -y install less\
  && printf "SetUserPreference( \"Pager\", \"less\" );\nSetUserPreference(\"PagerOptions\", [ \"-f\", \"-r\", \"-a\", \"-i\", \"-M\", \"-j2\" ] );" >> $GAP_HOME/gap.ini\
  && chown -R gap:gap $GAP_HOME \
- && apt-get -y remove --purge $BUILD_PKGS\
- && cd $GAP_HOME\
- && rm -rf build cnf extern hpcgap src tst\
  && apt-get -y autoremove --purge
  
 
