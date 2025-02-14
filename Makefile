@@ -11,3 +11,6 @@ latest: Dockerfile
 
 devel: Dockerfile.devel
 	docker buildx build -t ${PACKAGE}:devel -f Dockerfile.devel .
+
+full: Dockerfile.full
+	docker buildx build -t ${PACKAGE}:full -f Dockerfile.full .

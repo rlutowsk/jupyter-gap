@@ -34,26 +34,21 @@ RUN apt-get -y install python3 python3-venv\
 # download and compile gap
 ENV GAP_VER=4.14.0
 ENV GAP_HOME=$PREFIX/gap-$GAP_VER
-ARG GAP_URL="https://github.com/gap-system/gap/releases/download/v${GAP_VER}/gap-${GAP_VER}-core.tar.gz"
-ENV GAP_PACKAGES="alnuth autpgrp crisp crypting ctbllib factint fga gapdoc help io irredsol json jupyterkernel laguna orb polenta polycyclic primgrp profiling resclasses smallgrp sophus tomlib transgrp uuid zeromqinterface"
+ARG GAP_URL="https://github.com/gap-system/gap/releases/download/v${GAP_VER}/gap-${GAP_VER}.tar.gz"
 ARG BUILD_PKGS="g++ gcc libc6-dev make autoconf libtool libgmp-dev libreadline-dev zlib1g-dev libzmq3-dev"
-COPY --chown=gap:gap --chmod=755 download-gap-packages.py $PREFIX/bin
 RUN apt-get -y install wget\
  && apt-get install -y $BUILD_PKGS libzmq5\
  && cd $PREFIX\
  && wget ${GAP_URL}\
  && apt-get -y remove --purge wget\
- && tar zxf gap-${GAP_VER}-core.tar.gz\
- && rm gap-${GAP_VER}-core.tar.gz\
+ && tar zxf gap-${GAP_VER}.tar.gz\
+ && rm gap-${GAP_VER}.tar.gz\
  && cd $GAP_HOME\
  && ./configure\
  && make -j\
  && ln -s $GAP_HOME/gap $PREFIX/bin\
- && test -d $GAP_HOME/pkg || mkdir $GAP_HOME/pkg\
  && cd $GAP_HOME/pkg\
- && apt-get -y install python3-requests\
- && python3 $PREFIX/bin/download-gap-packages.py\
- && apt-get -y remove --purge python3-requests\
+ && rm -r xgap\
  && MAKEFLAGS=-j ../bin/BuildPackages.sh --parallel\
  && source $JUPYTER_HOME/bin/activate\
  && cd $GAP_HOME/pkg/jupyterkernel\
