@@ -20,7 +20,7 @@ to see the authentication token.
 
 Before using the `docker-compose.yml` file, one should note the following:
 
-1. Volumes are not necessar, but in case one would like to have access to the files then the proper path should be placed in `docker-compose.yml` file.
+1. Volumes are not necessary, but in case one would like to have access to the files then the proper path should be placed in `docker-compose.yml` file.
 1. If volumes are unnecessary, then user may be safely deleted from the file.
 
 ## CLI version of GAP
