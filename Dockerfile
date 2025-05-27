@@ -35,7 +35,7 @@ RUN apt-get -y install python3 python3-venv\
 ENV GAP_VER=4.14.0
 ENV GAP_HOME=$PREFIX/gap-$GAP_VER
 ARG GAP_URL="https://github.com/gap-system/gap/releases/download/v${GAP_VER}/gap-${GAP_VER}-core.tar.gz"
-ENV GAP_PACKAGES="alnuth autpgrp crisp crypting ctbllib factint fga gapdoc help io irredsol json jupyterkernel laguna orb polenta polycyclic primgrp profiling resclasses smallgrp sophus tomlib transgrp uuid zeromqinterface"
+ENV GAP_PACKAGES="alnuth autpgrp crisp crypting ctbllib factint fga gapdoc help io irredsol json jupyterkernel laguna orb polenta polycyclic primgrp profiling resclasses smallgrp sophus tomlib transgrp utils uuid zeromqinterface"
 ARG BUILD_PKGS="g++ gcc libc6-dev make autoconf libtool libgmp-dev libreadline-dev zlib1g-dev libzmq3-dev"
 COPY --chown=gap:gap --chmod=755 download-gap-packages.py $PREFIX/bin
 RUN apt-get -y install wget\
