@@ -28,11 +28,11 @@ RUN apt-get -y install python3 python3-venv\
  && apt-get -y remove python3-venv\
  && apt-get -y autoremove\
  && source $JUPYTER_HOME/bin/activate\
- && pip install notebook==6.5.7\
+ && pip install nbclassic\
  && chown -R gap:gap $JUPYTER_HOME
 
 # download and compile gap
-ENV GAP_VER=4.14.0
+ENV GAP_VER=4.15.1
 ENV GAP_HOME=$PREFIX/gap-$GAP_VER
 ARG GAP_URL="https://github.com/gap-system/gap/releases/download/v${GAP_VER}/gap-${GAP_VER}-core.tar.gz"
 ENV GAP_PACKAGES="alnuth autpgrp crisp crypting ctbllib factint fga gapdoc help io irredsol json jupyterkernel laguna orb polenta polycyclic primgrp profiling resclasses smallgrp sophus tomlib transgrp utils uuid zeromqinterface"
