@@ -11,10 +11,10 @@ all: latest devel full
 slim: latest
 
 latest: Dockerfile
-	docker buildx build -t ${PACKAGE}:latest ${OPTS} .
+	docker buildx build --provenance=true --sbom=true -t ${PACKAGE}:latest ${OPTS} .
 
 devel: Dockerfile.devel
-	docker buildx build -f Dockerfile.devel -t ${PACKAGE}:devel ${OPTS} .
+	docker buildx build --provenance=true --sbom=true -f Dockerfile.devel -t ${PACKAGE}:devel ${OPTS} .
 
 full: Dockerfile.full
-	docker buildx build -t ${PACKAGE}:full ${OPTS} .
+	docker buildx build --provenance=true --sbom=true -f Dockerfile.full -t ${PACKAGE}:full ${OPTS} .
